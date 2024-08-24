@@ -5,11 +5,6 @@ const About: React.FC = () => {
   return (
     <div className="">
       <div className="container mx-auto py-12 px-4 ">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 fade-in">
-            À propos
-          </h2>
-        </div>
         <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
           {/* Image à gauche */}
           <div className="w-full md:w-1/2 fade-in">
@@ -21,6 +16,9 @@ const About: React.FC = () => {
           </div>
           {/* Texte à droite */}
           <div className="w-full md:w-1/2 text-center md:text-left fade-in">
+            <h2 className="text-3xl md:text-4xl mb-4 font-bold text-gray-800 fade-in">
+              À propos
+            </h2>
             <h3 className="text-3xl font-semibold text-gray-800 mb-4">
               Découvrez Notre Mission
             </h3>
