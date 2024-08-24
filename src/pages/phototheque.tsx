@@ -3,20 +3,15 @@ import Header from "../components/layouts/header";
 import SectionPg from "../components/sectionpage";
 import Footer from "../components/layouts/footer";
 import Tof from "../assets/image.jpg";
-
+import Intro from "../assets/Cours-de-droit-constitutionnel-introduction-aideauxtd.com_.jpg";
+import Droit from "../assets/media-avocat-droit-penal-affaires-role.webp";
+import Penal from "../assets/ob_2b996e_licences-sc3a9lectives-avec-du-droit.jpg";
+import Commercial from "../assets/droit-fiscal-PFB-Avocat.jpg";
 const photos = [
-  { src: "https://via.placeholder.com/300", title: "Photo 1" },
-  { src: "https://via.placeholder.com/300", title: "Photo 2" },
-  { src: "https://via.placeholder.com/300", title: "Photo 3" },
-  { src: "https://via.placeholder.com/300", title: "Photo 4" },
-  { src: "https://via.placeholder.com/300", title: "Photo 5" },
-  { src: "https://via.placeholder.com/300", title: "Photo 6" },
-  { src: "https://via.placeholder.com/300", title: "Photo 7" },
-  { src: "https://via.placeholder.com/300", title: "Photo 8" },
-  { src: "https://via.placeholder.com/300", title: "Photo 9" },
-  { src: "https://via.placeholder.com/300", title: "Photo 10" },
-  { src: "https://via.placeholder.com/300", title: "Photo 11" },
-  { src: "https://via.placeholder.com/300", title: "Photo 12" },
+  { src: Intro, title: "Photo 1" },
+  { src: Droit, title: "Photo 2" },
+  { src: Penal, title: "Photo 3" },
+  { src: Commercial, title: "Photo 4" },
 ];
 
 const PhotothequePage: React.FC = () => {

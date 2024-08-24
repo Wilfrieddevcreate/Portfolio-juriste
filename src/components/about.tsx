@@ -1,4 +1,5 @@
 import React from "react";
+import AboutPhoto from "../assets/about.jpg";
 import { Link } from "react-router-dom";
 const About: React.FC = () => {
   return (
@@ -13,9 +14,9 @@ const About: React.FC = () => {
           {/* Image à gauche */}
           <div className="w-full md:w-1/2 fade-in">
             <img
-              src="https://via.placeholder.com/600x400"
+              src={AboutPhoto}
               alt="About Image"
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg w-auto"
             />
           </div>
           {/* Texte à droite */}

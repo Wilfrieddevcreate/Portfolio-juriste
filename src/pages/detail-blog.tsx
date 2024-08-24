@@ -5,17 +5,16 @@ import Header from "../components/layouts/header";
 import SectionPg from "../components/sectionpage";
 import Footer from "../components/layouts/footer";
 import Tof from "../assets/image.jpg";
+import BlogTof from "../assets/code.jpeg";
 
 const DetailBlog: React.FC = () => {
   // Données fictives pour l'exemple
   const blogDetails = {
-    title: "Titre du Blog",
+    title: "Les Nouvelles Réglementations sur la Propriété Intellectuelle",
     date: "22 août 2024",
-    imageUrl: "https://via.placeholder.com/1200x600",
+    imageUrl: BlogTof,
     content: `
-      <p>Ceci est le contenu complet du blog. Vous pouvez inclure du texte, des images, et plus encore.</p>
-      <p>Utilisez des balises HTML ici pour formater le contenu de votre blog comme vous le souhaitez. Cela peut inclure des paragraphes, des titres, des listes, etc.</p>
-      <p>Ajoutez plus de contenu ici si nécessaire. Assurez-vous que le contenu est bien formaté et lisible pour vos lecteurs.</p>
+      <p> Un aperçu détaillé des récentes modifications législatives concernant la propriété intellectuelle et leur impact sur les créateurs et les entreprises. Cet article explore les nouvelles lois et régulations mises en place pour protéger les droits d'auteur, les brevets et les marques dans un contexte numérique en constante évolution. Il examine également les défis auxquels les créateurs et les entreprises doivent faire face pour se conformer à ces nouvelles exigences</p>.<p> Nous discuterons des implications pratiques pour la gestion des droits de propriété intellectuelle, des stratégies pour éviter les violations et des conseils pour tirer parti des nouvelles protections offertes. Enfin, l'article propose des perspectives sur l'avenir de la propriété intellectuelle et comment les innovations technologiques pourraient influencer les régulations à venir.</p>
     `,
   };
 
@@ -31,7 +30,7 @@ const DetailBlog: React.FC = () => {
           <img
             src={blogDetails.imageUrl}
             alt={blogDetails.title}
-            className="w-full h-60 object-cover"
+            className="w-full h-60 object-fit"
           />
           <div className="p-6">
             <h1 className="text-3xl font-bold mb-2">{blogDetails.title}</h1>

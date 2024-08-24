@@ -4,68 +4,71 @@ import Header from "../components/layouts/header";
 import SectionPg from "../components/sectionpage";
 import Footer from "../components/layouts/footer";
 import Tof from "../assets/image.jpg";
-
+import Inter from "../assets/introduction-au-droit-des-relations-internationales.jpg"
+import Fondement from "../assets/Le-rôle-dun-avocat-en-droit-pénal-et-le-choisir.jpg"
+import Pratique from "../assets/R.jpeg"
+import Travail from "../assets/OIP.jpeg"
 const PublicationsPage: React.FC = () => {
   const cards = [
     {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du publication 1",
+      imageUrl: Inter,
+      title: "Introduction au Droit International",
       description:
-        "Ceci est une brève description du publication. Ce publication couvre les bases et les concepts avancés.",
-      taille: "10KO",
-      auteur: "Auteur 1",
+        "Un aperçu complet des principes et des normes du droit ...",
+      taille: "12KO",
+      auteur: "Dr. Marie Dupont",
+      annee: "2024",
+      pages: "85",
+    },
+    {
+      imageUrl: Fondement,
+      title: "Les Fondements du Droit Pénal",
+      description:
+        "Analyse approfondie des concepts clés du droit pénal...",
+      taille: "15KO",
+      auteur: "Prof. Jean Martin",
       annee: "2023",
+      pages: "110",
+    },
+    {
+      imageUrl: Pratique,
+      title: "Droit Civil: Théorie et Pratique",
+      description:
+        "Exploration des règles fondamentales du droit civil ...",
+      taille: "10KO",
+      auteur: "Dr. Sophie Leclerc",
+      annee: "2022",
       pages: "120",
     },
     {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du publication 2",
+      imageUrl: Travail,
+      title: "Le Droit du Travail en Europe",
       description:
-        "Ceci est une brève description du publication. Ce publication explore les techniques avancées.",
-      taille: "10KO",
-      auteur: "Auteur 2",
-      annee: "2022",
+        "Étude comparative des législations du travail à travers  ...",
+      taille: "20KO",
+      auteur: "Dr. Alain Moreau",
+      annee: "2023",
       pages: "150",
     },
     {
       imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du publication 3",
+      title: "Les Jurisprudences Récentes",
       description:
-        "Ceci est une brève description du publication. Ce publication couvre les bases et les concepts avancés.",
-      taille: "10KO",
-      auteur: "Auteur 1",
-      annee: "2023",
-      pages: "120",
+        "Recueil des décisions judiciaires récentes et leur influence sur l'évolution du droit.",
+      taille: "18KO",
+      auteur: "Prof. Claire Dubois",
+      annee: "2024",
+      pages: "200",
     },
     {
       imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du publication 4",
+      title: "Droit Commercial et Transactions",
       description:
-        "Ceci est une brève description du publication. Ce publication explore les techniques avancées.",
-      taille: "10KO",
-      auteur: "Auteur 2",
+        "Guide pratique sur les principes du droit commercial, avec des cas pratiques et des exemples de transactions.",
+      taille: "14KO",
+      auteur: "Dr. Lucas Bernard",
       annee: "2022",
-      pages: "150",
-    },
-    {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du publication 5",
-      description:
-        "Ceci est une brève description du publication. Ce publication couvre les bases et les concepts avancés.",
-      taille: "10KO",
-      auteur: "Auteur 1",
-      annee: "2023",
-      pages: "120",
-    },
-    {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du publication 6",
-      description:
-        "Ceci est une brève description du publication. Ce publication explore les techniques avancées.",
-      taille: "10KO",
-      auteur: "Auteur 2",
-      annee: "2022",
-      pages: "150",
+      pages: "135",
     },
   ];
 
@@ -97,7 +100,7 @@ const PublicationsPage: React.FC = () => {
               <img
                 src={card.imageUrl}
                 alt={card.title}
-                className="w-full h-48 sm:h-auto md:w-1/3 object-cover"
+                className="w-full h-20 sm:h-52 md:w-1/3 object-cover"
               />
               <div className="flex flex-col justify-between p-4 flex-grow">
                 <div className="flex justify-between items-center mb-2">

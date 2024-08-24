@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import Contrat from "../assets/Contrat-numerique.webp";
+import Personnelle from "../assets/per.jpeg";
+import Code from "../assets/code.jpeg";
 const Cards: React.FC = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -35,22 +38,22 @@ const Cards: React.FC = () => {
 
   const cardData = [
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 1",
+      imageUrl: Contrat,
+      title: "Les Implications Juridiques ...",
       description:
-        "Cette carte présente une description brève et concise pour attirer l'attention de l'utilisateur.",
+        "Découvrez comment les contrats numériques transforment le paysage juridique...",
     },
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 2",
+      imageUrl: Personnelle,
+      title: "La Protection des Données... ",
       description:
-        "Découvrez plus de détails sur cette carte en cliquant sur le bouton Voir plus.",
+        "Analyse des obligations légales pour les entreprises en matière ....",
     },
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 3",
+      imageUrl: Code,
+      title: "Les Nouvelles Réglementations..",
       description:
-        "Chaque carte est conçue pour être informative tout en étant visuellement attrayante.",
+        "Un aperçu des récentes modifications législatives concernant...",
     },
   ];
 

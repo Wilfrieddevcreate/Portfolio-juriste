@@ -4,63 +4,70 @@ import Header from "../components/layouts/header";
 import SectionPg from "../components/sectionpage";
 import Footer from "../components/layouts/footer";
 import Tof from "../assets/image.jpg";
-
+import Contrat from "../assets/Contrat-numerique.webp";
+import Personnelle from "../assets/per.jpeg";
+import Code from "../assets/code.jpeg";
+import Juridique from "../assets/abbb.jpeg"
+import Teletravail from "../assets/tele.jpeg"
+import Fisque from "../assets/droit-fiscal-PFB-Avocat.jpg"
 const Blog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 6;
 
   const cardData = [
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 1",
+      imageUrl: Contrat,
+      title: "Les Implications Juridiques ...",
       description:
-        "Cette carte présente une description brève et concise pour attirer l'attention de l'utilisateur.",
+        "Découvrez comment les contrats numériques transforment le paysage juridique...",
     },
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 2",
+      imageUrl: Personnelle,
+      title: "La Protection des Données... ",
       description:
-        "Découvrez plus de détails sur cette carte en cliquant sur le bouton Voir plus.",
+        "Analyse des obligations légales pour les entreprises en matière ....",
     },
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 3",
+      imageUrl: Code,
+      title: "Les Nouvelles Réglementations..",
       description:
-        "Chaque carte est conçue pour être informative tout en étant visuellement attrayante.",
-    },
-    // Ajoute plus de cartes ici pour tester la pagination
-    {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 4",
-      description: "Une autre carte pour tester la pagination.",
+        "Un aperçu des récentes modifications législatives concernant...",
     },
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 5",
-      description: "Encore une autre carte avec plus d'informations.",
-    },
-    {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 6",
-      description: "Dernière carte pour ce test de pagination.",
-    },
-    {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 7",
+      imageUrl: Juridique,
+      title: "Les Conséquences Juridiques des ...",
       description:
-        "Cette carte présente une description brève et concise pour attirer l'attention de l'utilisateur.",
+        "Étudiez les différents types de violations de contrat et les recours légaux disponibles pour les parties lésées.",
     },
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 8",
+      imageUrl: Teletravail,
+      title: "Les Droits des Employés en Télétravail",
       description:
-        "Découvrez plus de détails sur cette carte en cliquant sur le bouton Voir plus.",
+        "Examinez les droits des employés en télétravail, y compris les questions de sécurité, de confidentialité et de conditions de travail.",
     },
     {
-      imageUrl: "https://via.placeholder.com/400x300",
-      title: "Card 9",
+      imageUrl: Fisque,
+      title: "Les Évolutions du Droit Fiscal International",
       description:
-        "Chaque carte est conçue pour être informative tout en étant visuellement attrayante.",
+        "Analysez les récentes évolutions dans le droit fiscal international et leur impact sur les entreprises multinationales.",
+    },
+    {
+      imageUrl: "https://via.placeholder.com/400x400",
+      title: "La Réglementation des Cryptomonnaies",
+      description:
+        "Un aperçu des régulations émergentes concernant les cryptomonnaies et les défis juridiques associés.",
+    },
+    {
+      imageUrl: "https://via.placeholder.com/400x400",
+      title: "Les Nouveaux Développements en Droit du Travail",
+      description:
+        "Découvrez les derniers développements en droit du travail et leur impact sur les relations employeur-employé.",
+    },
+    {
+      imageUrl: "https://via.placeholder.com/400x400",
+      title: "Les Droits de Propriété Intellectuelle dans le Monde Numérique",
+      description:
+        "Examinez comment les droits de propriété intellectuelle sont appliqués dans le contexte numérique moderne.",
     },
   ];
 

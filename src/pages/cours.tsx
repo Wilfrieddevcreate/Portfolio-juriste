@@ -4,44 +4,49 @@ import Header from "../components/layouts/header";
 import SectionPg from "../components/sectionpage";
 import Footer from "../components/layouts/footer";
 import Tof from "../assets/image.jpg";
+import Intro from "../assets/Cours-de-droit-constitutionnel-introduction-aideauxtd.com_.jpg";
+import Droit from "../assets/media-avocat-droit-penal-affaires-role.webp";
+import Penal from "../assets/ob_2b996e_licences-sc3a9lectives-avec-du-droit.jpg";
+import Commercial from "../assets/droit-fiscal-PFB-Avocat.jpg";
 
 const CoursPage: React.FC = () => {
   const cards = [
     {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du Cours 1",
+      imageUrl: Intro,
+      title: "Introduction au Droit",
       description:
-        "Ceci est une brève description du cours. Ce cours couvre les bases et les concepts avancés.",
+        "Découvrez les fondements du droit, y compris les principales branches et principes juridiques.",
     },
     {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du Cours 2",
+      imageUrl: Droit,
+      title: "Droit Constitutionnel",
       description:
-        "Ceci est une brève description du cours. Ce cours explore les techniques avancées.",
+        "Explorez les structures et principes fondamentaux de la constitution d'un pays et leur impact sur le droit.",
     },
     {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du Cours 3",
+      imageUrl: Penal,
+      title: "Droit Pénal",
       description:
-        "Ceci est une brève description du cours. Ce cours explore les techniques avancées.",
+        "Analysez les infractions pénales, les procédures judiciaires et les peines associées.",
     },
     {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du Cours 4",
+      imageUrl: Commercial,
+      title: "Droit Commercial",
       description:
-        "Ceci est une brève description du cours. Ce cours explore les techniques avancées.",
+        "Étudiez les règles régissant les transactions commerciales et les relations entre les entreprises.",
     },
     {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du Cours 5",
+      imageUrl:
+        "https://www.pexels.com/photo/books-and-documents-on-desk-1695730/",
+      title: "Droit de la Propriété Intellectuelle",
       description:
-        "Ceci est une brève description du cours. Ce cours explore les techniques avancées.",
+        "Comprenez les droits relatifs aux créations intellectuelles et les protections juridiques associées.",
     },
     {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Titre du Cours 6",
+      imageUrl: "https://www.pexels.com/photo/law-book-on-table-5077053/",
+      title: "Droit du Travail",
       description:
-        "Ceci est une brève description du cours. Ce cours explore les techniques avancées.",
+        "Examinez les droits et obligations des employeurs et des employés dans le cadre du travail.",
     },
   ];
 
