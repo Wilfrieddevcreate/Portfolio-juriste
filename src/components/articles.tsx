@@ -41,7 +41,7 @@ const Cards: React.FC = () => {
       imageUrl: Contrat,
       title: "Les Implications Juridiques ...",
       description:
-        "Découvrez comment les contrats numériques transforment le paysage juridique...",
+        "Découvrez comment les contrats numériques transforment le ...",
     },
     {
       imageUrl: Personnelle,
