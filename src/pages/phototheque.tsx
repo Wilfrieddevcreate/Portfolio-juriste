@@ -1,25 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/layouts/header";
 import SectionPg from "../components/sectionpage";
 import Footer from "../components/layouts/footer";
 import Tof from "../assets/image.jpg";
-import Intro from "../assets/Cours-de-droit-constitutionnel-introduction-aideauxtd.com_.jpg";
-import Droit from "../assets/media-avocat-droit-penal-affaires-role.webp";
-import Penal from "../assets/ob_2b996e_licences-sc3a9lectives-avec-du-droit.jpg";
-import Commercial from "../assets/droit-fiscal-PFB-Avocat.jpg";
-const photos = [
-  { src: Intro, title: "Photo 1" },
-  { src: Droit, title: "Photo 2" },
-  { src: Penal, title: "Photo 3" },
-  { src: Commercial, title: "Photo 4" },
-];
+import PhotothequeService from "../service/phototheque.service"; // Utiliser le bon service
+
+interface Photo {
+  id: number;
+  title: string;
+  image: string;
+}
 
 const PhotothequePage: React.FC = () => {
+  const [photos, setPhotos] = useState<Photo[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // Nombre d'éléments à afficher par page
-  const totalPages = Math.ceil(photos.length / itemsPerPage);
+  const [totalPages, setTotalPages] = useState(1);
+  const itemsPerPage = 8;
+
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const data = await PhotothequeService.get(currentPage);
+        setPhotos(data); // Assure-toi que la structure des données est correcte
+        setTotalPages(Math.ceil(data.length / itemsPerPage)); // Ajuster en fonction du total
+      } catch (error) {
+        console.error('Failed to fetch photos:', error);
+      }
+    };
+
+    fetchPhotos();
+  }, [currentPage]);
 
   const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages) return;
     setCurrentPage(page);
   };
 
@@ -34,21 +47,20 @@ const PhotothequePage: React.FC = () => {
       <SectionPg title="Ma photothèque" imageSrc={Tof} />
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {currentPhotos.map((photo, index) => (
+          {currentPhotos.map((photo) => (
             <div
-              key={index}
+              key={photo.id}
               className="relative overflow-hidden group rounded-lg shadow-lg"
             >
+              <div className="absolute top-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-center">
+                <span className="text-lg font-semibold">{photo.title}</span>
+              </div>
               <img
-                src={photo.src}
+                src={photo.image}
                 alt={photo.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="text-white text-lg font-semibold">
-                  {photo.title}
-                </span>
-              </div>
+              
             </div>
           ))}
         </div>

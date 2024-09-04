@@ -1,89 +1,62 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import useSWR from "swr";
 import { Link } from "react-router-dom";
-import Contrat from "../assets/Contrat-numerique.webp";
-import Personnelle from "../assets/per.jpeg";
-import Code from "../assets/code.jpeg";
+import BlogService from "../service/blog.service";
+import { truncateWords } from "../utilis/textUtils";
+
+export interface Blog {
+  id: number;
+  slug: string;
+  title: string;
+  content: string;
+  image: string;
+  image_url: string;
+}
+
+// Fonction pour récupérer les données
+const fetchBlogs = async (): Promise<Blog[]> => {
+  const data = await BlogService.get();
+  return data.data; // Retourne les blogs
+};
+
 const Cards: React.FC = () => {
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { data: blogs, error } = useSWR<Blog[]>('/blogs', fetchBlogs);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("fade-in");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-      }
-    );
-
-    cardRefs.current.forEach((card) => {
-      if (card) {
-        observer.observe(card);
-      }
-    });
-
-    return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      cardRefs.current.forEach((card) => {
-        if (card) {
-          observer.unobserve(card);
-        }
-      });
-    };
-  }, []);
-
-  const cardData = [
-    {
-      imageUrl: Contrat,
-      title: "Les Implications Juridiques ...",
-      description:
-        "Découvrez comment les contrats numériques transforment le ...",
-    },
-    {
-      imageUrl: Personnelle,
-      title: "La Protection des Données... ",
-      description:
-        "Analyse des obligations légales pour les entreprises en matière ....",
-    },
-    {
-      imageUrl: Code,
-      title: "Les Nouvelles Réglementations..",
-      description:
-        "Un aperçu des récentes modifications législatives concernant...",
-    },
-  ];
+  if (error) return <p>Erreur lors du chargement des données.</p>;
+  if (!blogs) return <p>Chargement...</p>;
 
   return (
-    <div className=" py-8">
+    <div className="py-8">
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 selection:fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
             Les articles récents
           </h2>
         </div>
-        <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-8">
-          {cardData.map((card, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogs.slice(0, 3).map((blog: Blog) => (
             <div
-              key={index}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 opacity-0 transition-opacity duration-1000 ease-in-out"
+              key={blog.id}
+              className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
             >
               <img
-                src={card.imageUrl}
-                alt={card.title}
+                src={blog.image_url}
+                alt={blog.title}
                 className="w-full h-48 object-cover"
               />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-3">
-                  {card.title}
-                </h3>
-                <p className="text-gray-600 mb-4">{card.description}</p>
-                <div className="flex justify-center">
-                  <Link to={"/blog-detail"}>
+              <div className="p-6 flex flex-col flex-grow">
+                <h4 className="text-lg font-semibold text-gray-800 mb-3">
+                  {truncateWords(blog.title, 3)}
+                </h4>
+                <p className="text-gray-600 mb-4 flex-grow">
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: truncateWords(blog.content, 6),
+                    }}
+                  />
+                </p>
+                <div className="flex justify-center mt-auto">
+                  <Link to={`/blog-detail/${blog.slug}`}>
                     <button className="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
                       Voir plus
                     </button>

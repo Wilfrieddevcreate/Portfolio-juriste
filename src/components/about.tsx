@@ -44,6 +44,7 @@ const limitHtmlContent = (htmlContent: string, wordLimit: number): string => {
 
 const About: React.FC = () => {
   const { data: aboutData, error } = useSWR('/v1/abouts', fetchApropos);
+console.log(aboutData);
 
   if (error) {
     return (
@@ -61,7 +62,7 @@ const About: React.FC = () => {
     );
   }
 
-  const limitedContent = limitHtmlContent(aboutData.content, 60);
+  const limitedContent = limitHtmlContent(aboutData.content, 70);
 
   return (
     <div className="">

@@ -1,87 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/layouts/header";
 import SectionPg from "../components/sectionpage";
 import Footer from "../components/layouts/footer";
 import Tof from "../assets/image.jpg";
-import Inter from "../assets/introduction-au-droit-des-relations-internationales.jpg"
-import Fondement from "../assets/Le-rôle-dun-avocat-en-droit-pénal-et-le-choisir.jpg"
-import Pratique from "../assets/R.jpeg"
-import Travail from "../assets/OIP.jpeg"
+import publicationService from "../service/publication.service";
+import { truncateWords } from "../utilis/textUtils";
+
+interface Publication {
+  image: string;
+  title: string;
+  description: string;
+  author: string;
+  year: string;
+  pages: string;
+  file_size: string;
+  file: string;
+}
+
 const PublicationsPage: React.FC = () => {
-  const cards = [
-    {
-      imageUrl: Inter,
-      title: "Introduction au Droit International",
-      description:
-        "Un aperçu complet des principes et des normes du droit ...",
-      taille: "12KO",
-      auteur: "Dr. Marie Dupont",
-      annee: "2024",
-      pages: "85",
-    },
-    {
-      imageUrl: Fondement,
-      title: "Les Fondements du Droit Pénal",
-      description:
-        "Analyse approfondie des concepts clés du droit pénal...",
-      taille: "15KO",
-      auteur: "Prof. Jean Martin",
-      annee: "2023",
-      pages: "110",
-    },
-    {
-      imageUrl: Pratique,
-      title: "Droit Civil: Théorie et Pratique",
-      description:
-        "Exploration des règles fondamentales du droit civil ...",
-      taille: "10KO",
-      auteur: "Dr. Sophie Leclerc",
-      annee: "2022",
-      pages: "120",
-    },
-    {
-      imageUrl: Travail,
-      title: "Le Droit du Travail en Europe",
-      description:
-        "Étude comparative des législations du travail à travers  ...",
-      taille: "20KO",
-      auteur: "Dr. Alain Moreau",
-      annee: "2023",
-      pages: "150",
-    },
-    {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Les Jurisprudences Récentes",
-      description:
-        "Recueil des décisions judiciaires récentes et leur influence sur l'évolution du droit.",
-      taille: "18KO",
-      auteur: "Prof. Claire Dubois",
-      annee: "2024",
-      pages: "200",
-    },
-    {
-      imageUrl: "https://via.placeholder.com/150",
-      title: "Droit Commercial et Transactions",
-      description:
-        "Guide pratique sur les principes du droit commercial, avec des cas pratiques et des exemples de transactions.",
-      taille: "14KO",
-      auteur: "Dr. Lucas Bernard",
-      annee: "2022",
-      pages: "135",
-    },
-  ];
-
-  const itemsPerPage = 4;
+  const [publications, setPublications] = useState<Publication[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
-  const totalPages = Math.ceil(cards.length / itemsPerPage);
+  useEffect(() => {
+    const fetchPublications = async () => {
+      try {
+        const data = await publicationService.get(currentPage);
+        setPublications(data);
+      } catch (error) {
+        console.error("Erreur lors du chargement des publications:", error);
+      }
+    };
+
+    fetchPublications();
+  }, [currentPage]);
+
+  const totalPages = Math.ceil(publications.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  const currentCards = cards.slice(
+  const currentPublications = publications.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -92,20 +53,20 @@ const PublicationsPage: React.FC = () => {
       <SectionPg title="Mes publications" imageSrc={Tof} />
       <div className="container mx-auto px-4 py-8 my-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-          {currentCards.map((card, index) => (
+          {currentPublications.map((publication, index) => (
             <div
               key={index}
               className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row fade-in"
             >
               <img
-                src={card.imageUrl}
-                alt={card.title}
+                src={publication.image}
+                alt={publication.title}
                 className="w-full h-20 sm:h-52 md:w-1/3 object-cover"
               />
               <div className="flex flex-col justify-between p-4 flex-grow">
                 <div className="flex justify-between items-center mb-2">
                   <h2 className="text-lg font-semibold text-gray-800">
-                    {card.title}
+                    {truncateWords(publication.title, 5)}
                   </h2>
                   <Link to={"/publication-detail"}>
                     <button className="text-blue-600 hover:underline text-sm sm:text-base">
@@ -114,14 +75,13 @@ const PublicationsPage: React.FC = () => {
                   </Link>
                 </div>
                 <p className="text-gray-700 text-sm sm:text-base mb-4">
-                  {card.description}
+                  {truncateWords(publication.description,10)}
                 </p>
 
-                {/* Bande de couleur */}
                 <div className="flex justify-between items-center bg-blue-50 p-2 rounded-md text-sm sm:text-base mb-4">
-                  <span className="text-gray-700">{card.auteur}</span>
-                  <span className="text-gray-700">Année: {card.annee}</span>
-                  <span className="text-gray-700">{card.pages} pages</span>
+                  <span className="text-gray-700">{publication.author}</span>
+                  <span className="text-gray-700">Année: {publication.year}</span>
+                  <span className="text-gray-700">{publication.pages} pages</span>
                 </div>
 
                 <div className="flex justify-between">
@@ -132,12 +92,13 @@ const PublicationsPage: React.FC = () => {
                     Lire le document
                   </Link>
                   <a
-                    href="#"
+                    href={publication.file}
+                    download
                     className="text-blue-500 px-3 sm:px-4 sm:py-2 flex justify-center rounded-full transition duration-300 text-sm sm:text-base"
                   >
                     <span className="hover:underline">Télécharger</span>
-                    <span className="bg-blue-600 text-white px-1 rounded-full">
-                      {card.taille}
+                    <span className="bg-blue-600 text-white px-1 rounded-full ml-2">
+                      {publication.file_size}
                     </span>
                   </a>
                 </div>
