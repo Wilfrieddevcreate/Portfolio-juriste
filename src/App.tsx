@@ -25,7 +25,7 @@ function App() {
         <Route path="/cours" element={<CoursPage />} />
         <Route path="/cours-detail/:slug" element={<DetailCours />} />
         <Route path="/publications" element={<PublicationsPage />} />
-        <Route path="/publication-detail" element={<PublicationDetailPage />} />
+        <Route path="/publication-detail/:slug" element={<PublicationDetailPage />} />
         <Route path="/phototheque" element={<PhotothequePage />} />
         <Route path="/archives" element={<ArchivesPage />} />
         <Route path="/archive-document" element={<ArchiveDocument />} />

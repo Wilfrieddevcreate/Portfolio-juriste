@@ -9,6 +9,7 @@ import { truncateWords } from "../utilis/textUtils";
 
 interface Publication {
   image: string;
+  slug: string
   title: string;
   description: string;
   author: string;
@@ -68,7 +69,7 @@ const PublicationsPage: React.FC = () => {
                   <h2 className="text-lg font-semibold text-gray-800">
                     {truncateWords(publication.title, 5)}
                   </h2>
-                  <Link to={"/publication-detail"}>
+                  <Link to={`/publication-detail/${publication.slug}`}>
                     <button className="text-blue-600 hover:underline text-sm sm:text-base">
                       Voir le résumé
                     </button>
@@ -86,7 +87,7 @@ const PublicationsPage: React.FC = () => {
 
                 <div className="flex justify-between">
                   <Link
-                    to={"/publication-detail"}
+                    to={`/publication-detail/${publication.slug}`}
                     className="bg-blue-600 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300 text-sm sm:text-base"
                   >
                     Lire le document
