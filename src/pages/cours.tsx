@@ -1,66 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/layouts/header";
 import SectionPg from "../components/sectionpage";
 import Footer from "../components/layouts/footer";
 import Tof from "../assets/image.jpg";
-import Intro from "../assets/Cours-de-droit-constitutionnel-introduction-aideauxtd.com_.jpg";
-import Droit from "../assets/media-avocat-droit-penal-affaires-role.webp";
-import Penal from "../assets/ob_2b996e_licences-sc3a9lectives-avec-du-droit.jpg";
-import Commercial from "../assets/droit-fiscal-PFB-Avocat.jpg";
+import coursService from "../service/cours.service";
+import { truncateWords } from "../utilis/textUtils";
+
+interface Course {
+  id: number;
+  slug: string
+  title: string;
+  description: string;
+  resume: string;
+  content: string;
+  image: string;
+  file: string;
+  file_size: string;
+}
 
 const CoursPage: React.FC = () => {
-  const cards = [
-    {
-      imageUrl: Intro,
-      title: "Introduction au Droit",
-      description:
-        "Découvrez les fondements du droit, y compris les principales branches et principes juridiques.",
-    },
-    {
-      imageUrl: Droit,
-      title: "Droit Constitutionnel",
-      description:
-        "Explorez les structures et principes fondamentaux de la constitution d'un pays et leur impact sur le droit.",
-    },
-    {
-      imageUrl: Penal,
-      title: "Droit Pénal",
-      description:
-        "Analysez les infractions pénales, les procédures judiciaires et les peines associées.",
-    },
-    {
-      imageUrl: Commercial,
-      title: "Droit Commercial",
-      description:
-        "Étudiez les règles régissant les transactions commerciales et les relations entre les entreprises.",
-    },
-    {
-      imageUrl:
-        "https://www.pexels.com/photo/books-and-documents-on-desk-1695730/",
-      title: "Droit de la Propriété Intellectuelle",
-      description:
-        "Comprenez les droits relatifs aux créations intellectuelles et les protections juridiques associées.",
-    },
-    {
-      imageUrl: "https://www.pexels.com/photo/law-book-on-table-5077053/",
-      title: "Droit du Travail",
-      description:
-        "Examinez les droits et obligations des employeurs et des employés dans le cadre du travail.",
-    },
-  ];
-
-  // Configuration de la pagination
-  const itemsPerPage = 4; // Nombre de cartes par page
+  const [courses, setCourses] = useState<Course[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalCourses, setTotalCourses] = useState(0); // Nombre total de cours
+  const itemsPerPage = 4;
 
-  const totalPages = Math.ceil(cards.length / itemsPerPage);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const data = await coursService.get();
+        setCourses(data); // Assure-toi que la structure des données est correcte
+        setTotalCourses(data.length); // Nombre total de cours pour la pagination
+      } catch (error) {
+        console.error('Failed to fetch courses:', error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  const totalPages = Math.ceil(totalCourses / itemsPerPage); // Calculer le nombre total de pages
 
   const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages) return;
     setCurrentPage(page);
   };
 
-  const currentCards = cards.slice(
+  const currentCourses = courses.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -71,40 +57,45 @@ const CoursPage: React.FC = () => {
       <SectionPg title="Mes cours" imageSrc={Tof} />
       <div className="container mx-auto px-4 py-8 my-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-          {currentCards.map((card, index) => (
+          {currentCourses.map((course) => (
             <div
-              key={index}
+              key={course.id}
               className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row fade-in"
             >
               <img
-                src={card.imageUrl}
-                alt={card.title}
+                src={course.image}
+                alt={course.title}
                 className="w-full h-48 sm:h-auto md:w-1/3 object-cover"
               />
               <div className="flex flex-col justify-between p-4 flex-grow">
                 <div className="flex justify-between items-center mb-2">
                   <h2 className="text-lg font-semibold text-gray-800">
-                    {card.title}
+                    {truncateWords(course.title, 3)}
                   </h2>
-                  <Link to={"/cours-detail"}>
+                  <Link to={`/cours-detail/${course.slug}`}>
                     <button className="text-blue-600 hover:underline text-sm sm:text-base">
                       Voir l'aperçu
                     </button>
                   </Link>
                 </div>
                 <p className="text-gray-700 text-sm sm:text-base mb-4">
-                  {card.description}
+                <span
+                    dangerouslySetInnerHTML={{
+                      __html: truncateWords(course.description  , 20),
+                    }}
+                    />
                 </p>
                 <div className="flex justify-between">
                   <Link
-                    to={"/cours-detail"}
+                    to={`/cours-detail/${course.slug}`}
                     className="bg-blue-600 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300 text-sm sm:text-base"
                   >
                     Lire le cours
                   </Link>
                   <a
-                    href="#"
-                    className="text-blue-500 px-3  sm:px-4 sm:py-2 flex justify-center rounded-full transition duration-300 text-sm sm:text-base hover:underline"
+                    href={course.file}
+                    className="text-blue-500 px-3 sm:px-4 sm:py-2 flex justify-center rounded-full transition duration-300 text-sm sm:text-base hover:underline"
+                    download
                   >
                     Télécharger
                   </a>
