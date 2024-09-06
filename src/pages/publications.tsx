@@ -61,7 +61,7 @@ const PublicationsPage: React.FC = () => {
               <img
                 src={publication.image}
                 alt={publication.title}
-                className="w-full h-20 sm:h-52 md:w-1/3 object-cover"
+                className="w-full h-full sm:h-full md:w-1/3 object-cover"
               />
               <div className="flex flex-col justify-between p-4 flex-grow">
                 <div className="flex justify-between items-center mb-2">
