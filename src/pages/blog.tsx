@@ -24,7 +24,7 @@ const Blog: React.FC = () => {
       const data = await BlogService.get(page);
       setCards(data.data);
       setTotalPages(data.last_page);
-    } catch (error) {
+    } catch (error) { 
       console.error("Failed to fetch data:", error);
     }
   };
@@ -42,7 +42,7 @@ const Blog: React.FC = () => {
         <div className="px-4 py-8">
           <div className="container mx-auto">
             {/* Grid des cartes */}
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 fade-in">
               {cards.map((card: Blogs) => (
                 <div
                   key={card.id}

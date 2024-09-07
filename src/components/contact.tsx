@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import contactService from "../service/contact.service";
+
 const ContactForm: React.FC = () => {
   // États pour les champs du formulaire
   const [firstName, setFirstName] = useState("");
@@ -11,6 +12,15 @@ const ContactForm: React.FC = () => {
   // État pour gérer les erreurs
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  // Fonction pour réinitialiser les champs
+  const resetForm = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
+  };
 
   // Fonction pour gérer l'envoi du formulaire
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,11 +37,12 @@ const ContactForm: React.FC = () => {
     try {
       await contactService.Create(data);
       setSuccess("Votre message a été envoyé avec succès !");
-      setError(null); 
+      setError(null);
+      resetForm(); // Réinitialiser les champs après succès
     } catch (error) {
       setError("Une erreur est survenue lors de l'envoi de votre message.");
       setSuccess(null);
-      console.error(error)
+      console.error(error);
     }
   };
 
