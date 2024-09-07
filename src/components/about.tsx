@@ -44,7 +44,6 @@ const limitHtmlContent = (htmlContent: string, wordLimit: number): string => {
 
 const About: React.FC = () => {
   const { data: aboutData, error } = useSWR('/v1/abouts', fetchApropos);
-console.log(aboutData);
 
   if (error) {
     return (
@@ -57,7 +56,9 @@ console.log(aboutData);
   if (!aboutData) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p>Chargement...</p>
+        <> <div className="flex items-center justify-center my-6 fade-in">
+          <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+      </div></>
       </div>
     );
   }

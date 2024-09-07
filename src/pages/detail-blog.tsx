@@ -63,7 +63,7 @@ const DetailBlog: React.FC = () => {
       <div>
          <Header />
   <SectionPg title="Chargement..." imageSrc={Tof} />
-  <div className="flex items-center justify-center my-6">
+  <div className="flex items-center justify-center my-6 fade-in">
             <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
         </div>
   <Footer />
@@ -78,7 +78,7 @@ const DetailBlog: React.FC = () => {
       <Header />
       <SectionPg title="Détail du blog" imageSrc={Tof} />
       <div className="container mx-auto px-4 py-8">
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row fade-in">
           <img
             src={blogDetails.imageUrl}
             alt={blogDetails.title}

@@ -23,7 +23,9 @@ const Cards: React.FC = () => {
   const { data: blogs, error } = useSWR<Blog[]>('/blogs', fetchBlogs);
 
   if (error) return <p>Erreur lors du chargement des données.</p>;
-  if (!blogs) return <p>Chargement...</p>;
+  if (!blogs) return(<> <div className="flex items-center justify-center my-6 fade-in">
+    <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+</div></>);
 
   return (
     <div className="py-8">

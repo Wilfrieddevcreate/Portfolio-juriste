@@ -11,18 +11,23 @@ interface Photo {
   image: string;
 }
 
+interface ApiResponse {
+  current_page: number;
+  data: Photo[];
+  last_page: number;
+}
+
 const PhotothequePage: React.FC = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 8;
 
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const data = await PhotothequeService.get(currentPage);
-        setPhotos(data); // Assure-toi que la structure des données est correcte
-        setTotalPages(Math.ceil(data.length / itemsPerPage)); // Ajuster en fonction du total
+        const response: ApiResponse = await PhotothequeService.get(currentPage);
+        setPhotos(response.data); // Assure-toi que la structure des données est correcte
+        setTotalPages(response.last_page); // Ajuste le totalPages en fonction de la réponse de l'API
       } catch (error) {
         console.error('Failed to fetch photos:', error);
       }
@@ -36,18 +41,13 @@ const PhotothequePage: React.FC = () => {
     setCurrentPage(page);
   };
 
-  const currentPhotos = photos.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
   return (
     <>
       <Header />
       <SectionPg title="Ma photothèque" imageSrc={Tof} />
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {currentPhotos.map((photo) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 fade-in">
+          {photos.map((photo) => (
             <div
               key={photo.id}
               className="relative overflow-hidden group rounded-lg shadow-lg"
@@ -60,7 +60,6 @@ const PhotothequePage: React.FC = () => {
                 alt={photo.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              
             </div>
           ))}
         </div>
