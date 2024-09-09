@@ -1,41 +1,47 @@
 import React, { useState } from "react";
 import SearchService from "../service/search.service";
 import { truncateWords } from "../utilis/textUtils"; 
+
 interface SearchParams {
   type: string;
   start_date: string;
   end_date: string;
   keyword: string;
 }
+
 interface SearchResult {
   title: string;
   description: string;
+  image: string;
 }
+
 const SearchBar: React.FC = () => {
   const [documentType, setDocumentType] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [keyword, setKeyword] = useState("");
-  const [results, setResults] = useState<SearchResult []>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState(false); // Nouvelle variable d'état
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setHasSearched(false); // Reset de l'état lors d'une nouvelle recherche
+
     const searchParams: SearchParams = {
       type: documentType,
       start_date: startDate,
-        end_date: endDate,
-        keyword: keyword,
-      };
+      end_date: endDate,
+      keyword: keyword,
+    };
 
     try {
       const response = await SearchService.get(searchParams);
       setResults(response);
-      console.log(response);
-      
       setError(null);
+      setHasSearched(true); // La recherche a été effectuée
     } catch (error) {
-      setError("Une erreur est survenue lors de la recherche.");
+      setError("Aucun résultat trouvé.");
       setResults([]);
       console.error(error);
     }
@@ -48,7 +54,10 @@ const SearchBar: React.FC = () => {
           <div className="mb-6">
             <h1 className="font-bold text-2xl mb-4">RECHERCHER UN DOCUMENT</h1>
           </div>
-          <form className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4" onSubmit={handleSubmit}>
+          <form
+            className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4"
+            onSubmit={handleSubmit}
+          >
             {/* Type de document */}
             <div className="w-full border-b border-white">
               <label
@@ -68,6 +77,7 @@ const SearchBar: React.FC = () => {
                 <option value="cours">Cours</option>
               </select>
             </div>
+
             {/* Du (date de début) */}
             <div className="w-full border-b border-white">
               <label
@@ -84,6 +94,7 @@ const SearchBar: React.FC = () => {
                 className="w-full py-3 bg-white appearance-none bg-transparent px-4  focus:outline-none focus:ring-0 transition duration-300"
               />
             </div>
+
             {/* Au (date de fin) */}
             <div className="w-full border-b border-white">
               <label
@@ -100,6 +111,7 @@ const SearchBar: React.FC = () => {
                 className="w-full py-3 px-4 bg-white appearance-none bg-transparent focus:outline-none focus:ring-0 transition duration-300"
               />
             </div>
+
             {/* Mot clé */}
             <div className="w-full border-b border-white">
               <label
@@ -117,6 +129,7 @@ const SearchBar: React.FC = () => {
                 className="w-full py-3 px-4 bg-white appearance-none bg-transparent focus:outline-none focus:ring-0 transition duration-300"
               />
             </div>
+
             {/* Bouton Rechercher */}
             <div className="lg:w-full md:w-auto flex mt-8">
               <button
@@ -127,16 +140,29 @@ const SearchBar: React.FC = () => {
               </button>
             </div>
           </form>
+
+          {/* Affichage des erreurs */}
           {error && <div className="text-red-600 mt-4">{error}</div>}
+
+          {/* Affichage du message "Aucun résultat" après une recherche sans résultats */}
+          {hasSearched && results.length === 0 && !error && (
+            <div className="text-gray-600 mt-4">
+              Aucun résultat trouvé
+            </div>
+          )}
+
+          {/* Résultats de la recherche */}
           {results.length > 0 && (
             <div className="mt-8">
               <h2 className="text-2xl font-semibold mb-4">Résultats de la recherche</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                 {results.map((result, index) => (
-                  <div key={index} className="mb-4 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col px-6 py-4">
-                    {/* Affichez les détails des résultats ici */}
+                  <div key={index} className="mb-4 bg-white rounded-lg shadow-lg overflow-hidden space-x-4 flex flex-row px-6 py-4">
+                   <img src={result.image} alt="" className="w-20"/>
+                   <div>
                     <h3 className="text-xl font-bold mb-4">{result.title}</h3>
                     <p>{truncateWords(result.description, 10)}</p>
+                   </div>
                   </div>
                 ))}
               </div>
