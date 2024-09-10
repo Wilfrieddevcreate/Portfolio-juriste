@@ -170,7 +170,6 @@ const SearchBar: React.FC = () => {
                   >
                     {documentType === "cours" ? (
                       <div className="flex flex-row space-x-4">
-                        {/* Affichage avec l'image en haut pour les cours */}
                         <img src={result.image} alt="" className="w-24 " />
                         <div>
                           <h3 className="text-xl font-bold">{truncateWords(result.title, 3)}</h3>
