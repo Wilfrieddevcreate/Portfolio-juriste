@@ -1,45 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchService from "../service/search.service";
-import { truncateWords } from "../utilis/textUtils"; 
+import { truncateWords } from "../utilis/textUtils";
+import { Link } from "react-router-dom";
+
 interface SearchParams {
   type: string;
   start_date: string;
   end_date: string;
   keyword: string;
 }
+
 interface SearchResult {
+  slug: string;
   title: string;
   description: string;
+  image: string;
 }
+
 const SearchBar: React.FC = () => {
   const [documentType, setDocumentType] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [keyword, setKeyword] = useState("");
-  const [results, setResults] = useState<SearchResult []>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [isSearchTriggered, setIsSearchTriggered] = useState(false); // Nouvel état
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setHasSearched(false);
+    setIsSearchTriggered(true); // Déclencher la recherche manuellement
+
     const searchParams: SearchParams = {
       type: documentType,
       start_date: startDate,
-        end_date: endDate,
-        keyword: keyword,
-      };
+      end_date: endDate,
+      keyword: keyword,
+    };
 
     try {
       const response = await SearchService.get(searchParams);
       setResults(response);
-      console.log(response);
-      
       setError(null);
+      setHasSearched(true);
     } catch (error) {
-      setError("Une erreur est survenue lors de la recherche.");
+      setError("Aucun résultat trouvé.");
       setResults([]);
       console.error(error);
     }
   };
+
+  // Réinitialiser la recherche lorsque les paramètres changent
+  useEffect(() => {
+    setIsSearchTriggered(false); // Empêche la recherche automatique sur le changement des champs
+  }, [documentType, startDate, endDate, keyword]);
 
   return (
     <div className="bg-blue-100 py-4">
@@ -48,7 +63,10 @@ const SearchBar: React.FC = () => {
           <div className="mb-6">
             <h1 className="font-bold text-2xl mb-4">RECHERCHER UN DOCUMENT</h1>
           </div>
-          <form className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4" onSubmit={handleSubmit}>
+          <form
+            className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4"
+            onSubmit={handleSubmit}
+          >
             {/* Type de document */}
             <div className="w-full border-b border-white">
               <label
@@ -68,6 +86,7 @@ const SearchBar: React.FC = () => {
                 <option value="cours">Cours</option>
               </select>
             </div>
+
             {/* Du (date de début) */}
             <div className="w-full border-b border-white">
               <label
@@ -81,9 +100,10 @@ const SearchBar: React.FC = () => {
                 id="start-date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full py-3 bg-white appearance-none bg-transparent px-4  focus:outline-none focus:ring-0 transition duration-300"
+                className="w-full py-3 bg-white appearance-none bg-transparent px-4 focus:outline-none focus:ring-0 transition duration-300"
               />
             </div>
+
             {/* Au (date de fin) */}
             <div className="w-full border-b border-white">
               <label
@@ -100,6 +120,7 @@ const SearchBar: React.FC = () => {
                 className="w-full py-3 px-4 bg-white appearance-none bg-transparent focus:outline-none focus:ring-0 transition duration-300"
               />
             </div>
+
             {/* Mot clé */}
             <div className="w-full border-b border-white">
               <label
@@ -117,6 +138,7 @@ const SearchBar: React.FC = () => {
                 className="w-full py-3 px-4 bg-white appearance-none bg-transparent focus:outline-none focus:ring-0 transition duration-300"
               />
             </div>
+
             {/* Bouton Rechercher */}
             <div className="lg:w-full md:w-auto flex mt-8">
               <button
@@ -127,16 +149,49 @@ const SearchBar: React.FC = () => {
               </button>
             </div>
           </form>
+
+          {/* Affichage des erreurs */}
           {error && <div className="text-red-600 mt-4">{error}</div>}
-          {results.length > 0 && (
+
+          {/* Affichage du message "Aucun résultat" après une recherche sans résultats */}
+          {hasSearched && results.length === 0 && !error && (
+            <div className="text-gray-600 mt-4">Aucun résultat trouvé</div>
+          )}
+
+          {/* Résultats de la recherche */}
+          {isSearchTriggered && results.length > 0 && (
             <div className="mt-8">
               <h2 className="text-2xl font-semibold mb-4">Résultats de la recherche</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                 {results.map((result, index) => (
-                  <div key={index} className="mb-4 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col px-6 py-4">
-                    {/* Affichez les détails des résultats ici */}
-                    <h3 className="text-xl font-bold mb-4">{result.title}</h3>
-                    <p>{truncateWords(result.description, 10)}</p>
+                  <div
+                    key={index}
+                    className="mb-4 bg-white rounded-lg shadow-lg overflow-hidden space-x-4 flex flex-col lg:flex-row px-6 py-4"
+                  >
+                    {documentType === "cours" ? (
+                      <div className="flex flex-row space-x-4">
+                        <img src={result.image} alt="" className="w-24 " />
+                        <div>
+                          <h3 className="text-xl font-bold">{truncateWords(result.title, 3)}</h3>
+                          <p className="text-justify mb-2">{truncateWords(result.description, 10)}</p>
+                          <Link to={`/cours-detail/${result.slug}`}>
+                            <button className="bg-blue-600 rounded-full px-2 py-1 text-white">Lire le cours </button>
+                          </Link>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex flex-row space-x-4">
+                        {/* Affichage avec l'image à gauche pour les publications */}
+                        <img src={result.image} alt="" className="w-20" />
+                        <div>
+                          <h3 className="text-xl font-bold mb-2">{truncateWords(result.title, 3)}</h3>
+                          <p className="text-justify mb-2">{truncateWords(result.description, 10)}</p>
+                          <Link to={`/publication-detail/${result.slug}`}>
+                            <button className="bg-blue-600 rounded-full px-2 py-1 text-white">Lire la publication </button>
+                          </Link>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
