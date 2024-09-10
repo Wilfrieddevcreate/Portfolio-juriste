@@ -7,6 +7,7 @@
     keyword: string;
   }
   interface SearchResult {
+    slug: string
     title: string;        // Remplacez ces propriétés par celles que votre API retourne
     description: string;
     image: string  // Assurez-vous que ces noms correspondent à ceux de votre API
