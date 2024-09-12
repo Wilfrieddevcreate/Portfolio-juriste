@@ -18,14 +18,20 @@ const Blog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async (page: number) => {
     try {
+      setIsLoading(true);
+
       const data = await BlogService.get(page);
       setCards(data.data);
       setTotalPages(data.last_page);
+      setIsLoading(false);
     } catch (error) { 
       console.error("Failed to fetch data:", error);
+      setIsLoading(false);
+
     }
   };
 
@@ -38,8 +44,13 @@ const Blog: React.FC = () => {
       <div>
         <Header />
         <SectionPg title="Blog" imageSrc={Tof} />
-
-        <div className="px-4 py-8">
+{isLoading ? (
+  <> <div className="flex items-center justify-center my-6 fade-in">
+  <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+</div></>
+): (
+  <>
+    <div className="px-4 py-8">
           <div className="container mx-auto">
             {/* Grid des cartes */}
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 fade-in">
@@ -107,7 +118,9 @@ const Blog: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div></>
+)}
+      
 
         <Footer />
       </div>
