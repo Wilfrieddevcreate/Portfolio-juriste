@@ -76,7 +76,7 @@ const CoursPage: React.FC = () => {
                         {truncateWords(course.title, 3)}
                       </h2>
                       <Link to={`/cours-detail/${course.slug}`}>
-                        <button className="text-blue-600 hover:underline text-sm sm:text-base">
+                        <button className="text-blue-800 hover:underline text-sm sm:text-base">
                           Voir l'aperçu
                         </button>
                       </Link>
@@ -91,13 +91,13 @@ const CoursPage: React.FC = () => {
                     <div className="flex justify-between">
                       <Link
                         to={`/cours-detail/${course.slug}`}
-                        className="bg-blue-600 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300 text-sm sm:text-base"
+                        className="bg-blue-800 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300 text-sm sm:text-base"
                       >
                         Lire le cours
                       </Link>
                       <a
                         href={course.file}
-                        className="text-blue-500 px-3 sm:px-4 sm:py-2 flex justify-center rounded-full transition duration-300 text-sm sm:text-base hover:underline"
+                        className="text-blue-800 px-3 sm:px-4 sm:py-2 flex justify-center rounded-full transition duration-300 text-sm sm:text-base hover:underline"
                         download
                       >
                         Télécharger
@@ -112,7 +112,7 @@ const CoursPage: React.FC = () => {
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                className="px-4 py-2 mx-2 bg-blue-800 text-white rounded hover:bg-blue-600 disabled:opacity-50"
               >
                 Précédent
               </button>
@@ -122,7 +122,7 @@ const CoursPage: React.FC = () => {
                   onClick={() => handlePageChange(index + 1)}
                   className={`px-4 py-2 mx-2 rounded ${
                     currentPage === index + 1
-                      ? "bg-blue-600 text-white"
+                      ? "bg-blue-800 text-white"
                       : "bg-gray-300 hover:bg-gray-400"
                   }`}
                 >
@@ -132,7 +132,7 @@ const CoursPage: React.FC = () => {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                className="px-4 py-2 mx-2 bg-blue-800 text-white rounded hover:bg-blue-600 disabled:opacity-50"
               >
                 Suivant
               </button>

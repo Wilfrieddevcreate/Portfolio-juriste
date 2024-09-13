@@ -75,7 +75,7 @@ const Blog: React.FC = () => {
                     </p>
                     <div className="flex justify-center">
                       <Link to={`/blog-detail/${card.slug}`}>
-                        <button className="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
+                        <button className="bg-blue-800 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
                           Voir plus
                         </button>
                       </Link>

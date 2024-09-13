@@ -13,14 +13,17 @@ interface Photo {
 
 const PhotothequePage: React.FC = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
-
+  const [loading, setLoading] = useState<boolean>(true); 
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
+        setLoading(true);
         const data: Photo[] = await archiveService.get("photo");
         setPhotos(data); // Assure-toi que la structure des données est correcte
       } catch (error) {
         console.error('Failed to fetch photos:', error);
+      }finally{
+        setLoading(false);
       }
     };
 
@@ -32,6 +35,12 @@ const PhotothequePage: React.FC = () => {
       <Header />
       <SectionPg title="Archive Photo" imageSrc={Tof} />
       <div className="container mx-auto px-4 py-8">
+        {loading ? (
+          <> <div className="flex items-center justify-center my-6 fade-in">
+          <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+        </div></>
+        ): (
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 fade-in">
           {photos.map((photo) => (
             <div
@@ -49,6 +58,7 @@ const PhotothequePage: React.FC = () => {
             </div>
           ))}
         </div>
+        )}
       </div>
       <Footer />
     </>

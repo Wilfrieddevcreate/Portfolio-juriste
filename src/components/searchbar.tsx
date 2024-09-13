@@ -143,7 +143,7 @@ const SearchBar: React.FC = () => {
             <div className="lg:w-full md:w-auto flex mt-8">
               <button
                 type="submit"
-                className="w-full bg-blue-600 mt-6 text-white py-3 px-6 rounded-full font-semibold shadow-md hover:bg-blue-700 transition duration-300"
+                className="w-full bg-blue-800 mt-6 text-white py-3 px-6 rounded-full font-semibold shadow-md hover:bg-blue-700 transition duration-300"
               >
                 Rechercher
               </button>
