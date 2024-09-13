@@ -87,7 +87,7 @@ const About: React.FC = () => {
               dangerouslySetInnerHTML={{ __html: limitedContent }}
             />
             <Link to={"/about"}>
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
+              <button className="bg-blue-800 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
                 Voir plus
               </button>
             </Link>

@@ -21,7 +21,7 @@ const ArchivesPage: React.FC = () => {
                 présentations, et d'autres fichiers essentiels.
               </p>
               <Link to={"/archive-document"}>
-                <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                <button className="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-600">
                   Voir les documents
                 </button>
               </Link>
@@ -36,7 +36,7 @@ const ArchivesPage: React.FC = () => {
                 marquants.
               </p>
               <Link to={"/archive-photo"}>
-                <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                <button className="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-600">
                   Voir les photos
                 </button>
               </Link>

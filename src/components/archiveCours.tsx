@@ -17,14 +17,18 @@ interface Course {
 
 const ArchiveCours: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState<boolean>(true); 
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
+        setLoading(true)
         const data = await ArchiveService.get("document");
         setCourses(data.cours); // Accéder à la clé 'cours' de la réponse API
       } catch (error) {
         console.error('Failed to fetch courses:', error);
+      }finally{
+        setLoading(false)
       }
     };
 
@@ -34,6 +38,12 @@ const ArchiveCours: React.FC = () => {
   return (
     <>
       <div className="container mx-auto px-4 py-8">
+        {loading ? (
+           <> <div className="flex items-center justify-center my-6 fade-in">
+           <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+         </div></>
+        ): (
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {courses.map((course) => (
             <div
@@ -82,6 +92,7 @@ const ArchiveCours: React.FC = () => {
             </div>
           ))}
         </div>
+        )}
       </div>
     </>
   );

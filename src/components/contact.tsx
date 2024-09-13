@@ -161,7 +161,7 @@ const ContactForm: React.FC = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition duration-300"
+                className="bg-blue-800 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition duration-300"
               >
                 Envoyer
               </button>

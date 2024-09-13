@@ -53,13 +53,13 @@ const Cards: React.FC = () => {
                 <p className="text-gray-600 mb-4 flex-grow">
                   <span
                     dangerouslySetInnerHTML={{
-                      __html: truncateWords(blog.content, 6),
+                      __html: truncateWords(blog.content, 15),
                     }}
                   />
                 </p>
                 <div className="flex justify-center mt-auto">
                   <Link to={`/blog-detail/${blog.slug}`}>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
+                    <button className="bg-blue-800 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
                       Voir plus
                     </button>
                   </Link>
@@ -70,7 +70,7 @@ const Cards: React.FC = () => {
         </div>
         <div className="flex justify-center mt-20">
           <Link to={"/blog"}>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
+            <button className="bg-blue-800 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
               Voir tous les articles
             </button>
           </Link>
