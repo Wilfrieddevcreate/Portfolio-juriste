@@ -3,7 +3,7 @@ import HeroSectionImg from "../assets/herosection.jpeg"
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="mt-20">
+    <section className="mt-28 md:mt-48 lg:mt-24">
       <div className="container mx-auto flex flex-col md:flex-row items-center px-4">
         {/* Texte à gauche */}
         <div className="md:w-1/2 text-center md:text-left p-3">

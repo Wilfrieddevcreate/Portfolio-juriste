@@ -89,7 +89,7 @@ const Blog: React.FC = () => {
             <div className="flex justify-center mt-20 mb-10">
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                className="px-4 py-2 mx-1 bg-blue-800 text-white rounded hover:bg-blue-600 disabled:opacity-50"
                 disabled={currentPage === 1}
               >
                 Précédent
@@ -100,7 +100,7 @@ const Blog: React.FC = () => {
                   onClick={() => setCurrentPage(index + 1)}
                   className={`px-4 py-2 mx-1 rounded ${
                     currentPage === index + 1
-                      ? "bg-blue-500 text-white"
+                      ? "bg-blue-800 text-white"
                       : "bg-gray-200 text-gray-700"
                   } hover:bg-blue-300`}
                 >
@@ -111,7 +111,7 @@ const Blog: React.FC = () => {
                 onClick={() =>
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                 }
-                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                className="px-4 py-2 mx-1 bg-blue-800 text-white rounded hover:bg-blue-600 disabled:opacity-50"
                 disabled={currentPage === totalPages}
               >
                 Suivant

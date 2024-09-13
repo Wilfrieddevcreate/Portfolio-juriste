@@ -69,7 +69,7 @@ const PublicationDetailPage: React.FC = () => {
       <SectionPg title="Détail" imageSrc={Tof} />
 
       <div className="container mx-auto px-6 py-8 bg-white rounded-lg shadow-lg mt-3">
-        <div className="flex flex-col md:flex-row items-start">
+        <div className="flex flex-col md:flex-row">
           {/* Image à gauche */}
           <div className="md:w-1/2 mb-6 md:mb-0">
             <img

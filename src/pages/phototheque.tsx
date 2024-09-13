@@ -78,7 +78,7 @@ const PhotothequePage: React.FC = () => {
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                className="px-4 py-2 mx-2 bg-blue-800 text-white rounded hover:bg-blue-600 disabled:opacity-50"
               >
                 Précédent
               </button>
@@ -88,7 +88,7 @@ const PhotothequePage: React.FC = () => {
                   onClick={() => handlePageChange(index + 1)}
                   className={`px-4 py-2 mx-2 rounded ${
                     currentPage === index + 1
-                      ? "bg-blue-600 text-white"
+                      ? "bg-blue-800 text-white"
                       : "bg-gray-300 hover:bg-gray-400"
                   }`}
                 >
@@ -98,7 +98,7 @@ const PhotothequePage: React.FC = () => {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                className="px-4 py-2 mx-2 bg-blue-800 text-white rounded hover:bg-blue-600 disabled:opacity-50"
               >
                 Suivant
               </button>
