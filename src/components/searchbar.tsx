@@ -170,7 +170,7 @@ const SearchBar: React.FC = () => {
                   >
                     {documentType === "cours" ? (
                       <div className="flex lg:flex-row flex-col space-x-4">
-                        <img src={result.image} alt="" className="w-full h-48 " />
+                        <img src={result.image} alt="" className="w-full h-32" />
                         <div>
                           <h3 className="text-xl font-bold">{truncateWords(result.title, 3)}</h3>
                           <p className="text-justify mb-2">{truncateWords(result.description, 10)}</p>
@@ -181,7 +181,7 @@ const SearchBar: React.FC = () => {
                       </div>
                     ) : (
                       <div className="flex lg:flex-row flex-col  space-x-4">
-                        <img src={result.image} alt="" className="w-full h-48 " />
+                        <img src={result.image} alt="" className="w-full h-32 " />
                         <div>
                           <h3 className="text-xl font-bold mb-2">{truncateWords(result.title, 3)}</h3>
                           <p className="text-justify mb-2">{truncateWords(result.description, 10)}</p>
