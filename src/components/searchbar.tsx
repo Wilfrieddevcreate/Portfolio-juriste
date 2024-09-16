@@ -185,6 +185,7 @@ const SearchBar: React.FC = () => {
                         <div>
                           <h3 className="text-xl font-bold mb-2">{truncateWords(result.title, 3)}</h3>
                           <p className="text-justify mb-2">{truncateWords(result.description, 10)}</p>
+                          
                           <Link to={`/publication-detail/${result.slug}`}>
                             <button className="bg-blue-800 rounded-full px-2 py-1 text-white">Lire la publication </button>
                           </Link>
