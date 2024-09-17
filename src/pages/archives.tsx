@@ -17,8 +17,8 @@ const ArchivesPage: React.FC = () => {
               <h2 className="text-xl font-bold mb-4">Document Archive</h2>
               <p className="text-gray-700 mb-4">
                 Cette archive contient des documents importants relatifs à nos
-                projets passés. Vous y trouverez des rapports, des
-                présentations, et d'autres fichiers essentiels.
+                projets passés. Vous y trouverez des rapports et des
+                présentations.
               </p>
                 <button className="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-600">
                   Voir les documents
