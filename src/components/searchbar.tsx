@@ -151,7 +151,6 @@ const SearchBar: React.FC = () => {
             <div className="text-gray-600 mt-4">Aucun résultat trouvé</div>
           )}
 
-          {/* Résultats de la recherche */}
           {isSearchTriggered && results.length > 0 && (
             <div className="mt-8">
               <h2 className="text-2xl font-semibold mb-4">Résultats de la recherche</h2>
