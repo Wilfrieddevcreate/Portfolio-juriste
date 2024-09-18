@@ -21,19 +21,19 @@ const PhotothequePage: React.FC = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(true); // Nouvel état pour isLoading
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     const fetchPhotos = async () => {
-      setIsLoading(true); // Début du chargement
+      setIsLoading(true); 
       try {
         const response: ApiResponse = await PhotothequeService.get(currentPage);
-        setPhotos(response.data); // Assure que la structure des données est correcte
-        setTotalPages(response.last_page); // Ajuste le totalPages en fonction de la réponse de l'API
+        setPhotos(response.data);
+        setTotalPages(response.last_page);
       } catch (error) {
         console.error('Failed to fetch photos:', error);
       } finally {
-        setIsLoading(false); // Fin du chargement
+        setIsLoading(false);
       }
     };
 

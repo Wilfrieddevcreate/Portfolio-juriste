@@ -22,9 +22,8 @@ const DetailBlog: React.FC = () => {
       try {
         const response = await blogService.show(slug || "");
 
-        // Vérifiez que 'response' contient les informations attendues
         if (Array.isArray(response) && response.length > 0) {
-          const data = response[0]; // Accéder au premier élément du tableau
+          const data = response[0]; 
           console.log(data);
           
           setBlogDetails({
