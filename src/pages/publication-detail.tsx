@@ -25,12 +25,10 @@ const PublicationDetailPage: React.FC = () => {
   useEffect(() => {
     const fetchPublication = async () => {
       try {
-        console.log(slug);
         
         const data = await publicationService.show(slug as string); // Appelle l'API avec le slug
         setPublication(data[0]); // Stocke les données de la publication
         setLoading(false); // Désactive le chargement
-        console.log(data);
         
       } catch (err) {
         console.error(err);

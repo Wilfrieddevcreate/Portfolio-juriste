@@ -1,4 +1,3 @@
-  // blog.service.ts
   import api from './base.service';
   interface SearchParams {
     type: string;
@@ -8,15 +7,13 @@
   }
   interface SearchResult {
     slug: string
-    title: string;        // Remplacez ces propriétés par celles que votre API retourne
+    title: string;        
     description: string;
-    image: string  // Assurez-vous que ces noms correspondent à ceux de votre API
-    // Ajoutez d'autres propriétés si nécessaire
+    image: string  
   }
   class SearchService {
     async get(params: SearchParams): Promise<SearchResult[]> {
       try {
-        // Envoyer les paramètres dans la requête GET
         const response = await api.get<SearchResult[]>('/search', { params });
         return response.data;
       } catch (error) {

@@ -1,8 +1,7 @@
 import api from './base.service'
 
 class AproposService {
-  // A propos
-  // Récupérer toutes les données
+
   async fetchApropos() {
     try {
       const response = await api.get(`/abouts`);
