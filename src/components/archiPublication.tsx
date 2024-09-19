@@ -19,14 +19,18 @@ interface Publication {
 
 const ArchivePublication: React.FC = () => {
   const [publications, setPublications] = useState<Publication[]>([]);
+  const [loading, setLoading] = useState<boolean>(true); 
 
   useEffect(() => {
     const fetchPublications = async () => {
       try {
+        setLoading(true)
         const data = await ArchiveService.get("document");
         setPublications(data.publications); // Accéder à la clé 'publications' de la réponse API
       } catch (error) {
         console.error("Erreur lors du chargement des publications:", error);
+      }finally{
+        setLoading(false)
       }
     };
 
@@ -36,6 +40,10 @@ const ArchivePublication: React.FC = () => {
   return (
     <>
       <div className="container mx-auto px-4 py-8">
+        {loading ? (<> <div className="flex items-center justify-center my-6 fade-in">
+           <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+         </div></>):(
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {publications.map((publication) => (
             <div
@@ -89,6 +97,7 @@ const ArchivePublication: React.FC = () => {
             </div>
           ))}
         </div>
+         )}
       </div>
     </>
   );

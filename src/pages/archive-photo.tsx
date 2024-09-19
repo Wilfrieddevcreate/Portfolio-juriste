@@ -19,7 +19,8 @@ const PhotothequePage: React.FC = () => {
       try {
         setLoading(true);
         const data: Photo[] = await archiveService.get("photo");
-        setPhotos(data); // Assure-toi que la structure des données est correcte
+        setPhotos(data); 
+        
       } catch (error) {
         console.error('Failed to fetch photos:', error);
       }finally{

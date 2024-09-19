@@ -7,8 +7,6 @@ import Tof from "../assets/image.jpg";
 import ArchivePublication from "../components/archiPublication";
 import ArchiveCours from "../components/archiveCours";
 const PublicationsPage: React.FC = () => {
- 
-
   return (
     <>
       <Header />

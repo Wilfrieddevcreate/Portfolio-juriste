@@ -1,4 +1,3 @@
-// cours.service.ts
 import api from './base.service';
 
 class CoursService {

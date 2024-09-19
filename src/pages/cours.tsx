@@ -34,7 +34,7 @@ const CoursPage: React.FC = () => {
         setTotalPages(data.last_page);
         setCurrentPage(data.current_page);
       } catch (error) {
-        console.error('Failed to fetch courses:', error);
+        console.error('Erreur lors de la récupération:', error);
       } finally {
         setIsLoading(false);
       }

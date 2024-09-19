@@ -29,7 +29,7 @@ const Blog: React.FC = () => {
       setTotalPages(data.last_page);
       setIsLoading(false);
     } catch (error) { 
-      console.error("Failed to fetch data:", error);
+      console.error("Ereur lors de la récupération des données", error);
       setIsLoading(false);
 
     }

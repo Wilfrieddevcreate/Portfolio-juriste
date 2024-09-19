@@ -9,21 +9,17 @@ export default function Header() {
   return (
     <header className="bg-blue-50 py-5 mb-5 font-sans fixed top-0 w-full z-50 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
-            {/* Texte complet visible sur les écrans md et plus */}
             <div className="hidden md:block mx-8 font-bold text-2xl">
               Baï Irène Aimée KOOVI
             </div>
-            {/* Texte abrégé visible sur mobile */}
             <div className="block md:hidden mx-8 font-bold text-2xl">
               KOOVI  Baï
             </div>
           </Link>
         </div>
 
-        {/* Menu desktop */}
         <nav className="hidden md:flex space-x-8 text-lg relative font-extrabold">
           <Link to="/blog" className="hover:text-gray-600 py-2">
             Blog

@@ -51,9 +51,8 @@ const SearchBar: React.FC = () => {
     }
   };
 
-  // Réinitialiser la recherche lorsque les paramètres changent
   useEffect(() => {
-    setIsSearchTriggered(false); // Empêche la recherche automatique sur le changement des champs
+    setIsSearchTriggered(false); 
   }, [documentType, startDate, endDate, keyword]);
 
   return (
@@ -67,7 +66,6 @@ const SearchBar: React.FC = () => {
             className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4"
             onSubmit={handleSubmit}
           >
-            {/* Type de document */}
             <div className="w-full border-b border-white">
               <label
                 htmlFor="document-type"
@@ -87,7 +85,6 @@ const SearchBar: React.FC = () => {
               </select>
             </div>
 
-            {/* Du (date de début) */}
             <div className="w-full border-b border-white">
               <label
                 htmlFor="start-date"
@@ -104,7 +101,6 @@ const SearchBar: React.FC = () => {
               />
             </div>
 
-            {/* Au (date de fin) */}
             <div className="w-full border-b border-white">
               <label
                 htmlFor="end-date"
@@ -121,7 +117,6 @@ const SearchBar: React.FC = () => {
               />
             </div>
 
-            {/* Mot clé */}
             <div className="w-full border-b border-white">
               <label
                 htmlFor="keyword"
@@ -139,7 +134,6 @@ const SearchBar: React.FC = () => {
               />
             </div>
 
-            {/* Bouton Rechercher */}
             <div className="lg:w-full md:w-auto flex mt-8">
               <button
                 type="submit"
@@ -150,15 +144,13 @@ const SearchBar: React.FC = () => {
             </div>
           </form>
 
-          {/* Affichage des erreurs */}
           {error && <div className="text-red-600 mt-4">{error}</div>}
 
-          {/* Affichage du message "Aucun résultat" après une recherche sans résultats */}
+         
           {hasSearched && results.length === 0 && !error && (
             <div className="text-gray-600 mt-4">Aucun résultat trouvé</div>
           )}
 
-          {/* Résultats de la recherche */}
           {isSearchTriggered && results.length > 0 && (
             <div className="mt-8">
               <h2 className="text-2xl font-semibold mb-4">Résultats de la recherche</h2>
@@ -170,7 +162,7 @@ const SearchBar: React.FC = () => {
                   >
                     {documentType === "cours" ? (
                       <div className="flex lg:flex-row flex-col space-x-4">
-                        <img src={result.image} alt="" className="w-full h-32" />
+                        <img src={result.image} alt="" className="w-44 h-44" />
                         <div>
                           <h3 className="text-xl font-bold">{truncateWords(result.title, 3)}</h3>
                           <p className="text-justify mb-2">{truncateWords(result.description, 10)}</p>
@@ -181,7 +173,7 @@ const SearchBar: React.FC = () => {
                       </div>
                     ) : (
                       <div className="flex lg:flex-row flex-col  space-x-4">
-                        <img src={result.image} alt="" className="w-full h-32 " />
+                        <img src={result.image} alt="" className="w-44 h-44 " />
                         <div>
                           <h3 className="text-xl font-bold mb-2">{truncateWords(result.title, 3)}</h3>
                           <p className="text-justify mb-2">{truncateWords(result.description, 10)}</p>

@@ -10,7 +10,6 @@
         throw error;
       }
     } 
-    
   }
 
   export default new ArchiveService();

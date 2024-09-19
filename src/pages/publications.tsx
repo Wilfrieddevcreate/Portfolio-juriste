@@ -103,7 +103,7 @@ const [isLoading, setIsLoading] = useState(true)
                             <a
                               href={publication.file}
                               download
-                              className="text-blue-800 px-3 sm:px-4 sm:py-2 flex justify-center rounded-full transition duration-300 text-sm sm:text-base"
+                              className="text-blue-800 flex justify-center py-2 rounded-full transition duration-300 text-sm sm:text-base"
                             >
                               <span className="hover:underline">Télécharger</span>
                               <span className="bg-blue-800 text-white px-1 rounded-full ml-2">
