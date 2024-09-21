@@ -58,12 +58,12 @@ const SearchBar: React.FC = () => {
   return (
     <div className="bg-blue-100 py-4">
       <div className="fade-in px-2">
-        <div className="mx-12">
+        <div className="">
           <div className="mb-6">
             <h1 className="font-bold text-2xl mb-4">RECHERCHER UN DOCUMENT</h1>
           </div>
           <form
-            className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4"
+            className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4 mx-12"
             onSubmit={handleSubmit}
           >
             <div className="w-full border-b border-white">
@@ -162,7 +162,8 @@ const SearchBar: React.FC = () => {
                   >
                     {documentType === "cours" ? (
                       <div className="flex lg:flex-row flex-col space-x-4">
-                        <img src={result.image} alt="" className="w-44 h-48 object-cover" />
+                       <img src={result.image} alt="Image des résultats" className="w-full sm:w-56 md:w-64 lg:w-44 h-48 object-cover" />
+
                         <div>
                           <h3 className="text-xl font-bold">{truncateWords(result.title, 3)}</h3>
                           <p className="mb-4">{truncateWords(result.description, 10)}</p>
@@ -173,13 +174,13 @@ const SearchBar: React.FC = () => {
                       </div>
                     ) : (
                       <div className="flex lg:flex-row flex-col  space-x-4">
-                        <img src={result.image} alt="" className="w-44 h-48 object-cover" />
-                        <div>
+                          <img src={result.image} alt="Image des résultats" className="w-full sm:w-56 md:w-64 lg:w-44 h-48 object-cover" />
+                      <div>
                           <h3 className="text-xl font-bold mb-2">{truncateWords(result.title, 3)}</h3>
                           <p className=" mb-4">{truncateWords(result.description, 10)}</p>
                           
                           <Link to={`/publication-detail/${result.slug}`}>
-                            <button className="bg-blue-800 rounded-48 px-2 py-1 text-white">Lire la publication </button>
+                            <button className="bg-blue-800 rounded-full px-2 py-1 text-white">Lire la publication </button>
                           </Link>
                         </div>
                       </div>
