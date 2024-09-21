@@ -58,12 +58,12 @@ const SearchBar: React.FC = () => {
   return (
     <div className="bg-blue-100 py-4">
       <div className="fade-in px-2">
-        <div className="mx-12">
+        <div className="">
           <div className="mb-6">
             <h1 className="font-bold text-2xl mb-4">RECHERCHER UN DOCUMENT</h1>
           </div>
           <form
-            className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4"
+            className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4 mx-12"
             onSubmit={handleSubmit}
           >
             <div className="w-full border-b border-white">
