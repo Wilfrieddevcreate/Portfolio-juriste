@@ -90,7 +90,7 @@ const SearchBar: React.FC = () => {
                 htmlFor="start-date"
                 className="block text-gray-700 font-semibold mb-2"
               >
-                Du
+                 
               </label>
               <input
                 type="date"
