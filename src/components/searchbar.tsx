@@ -177,7 +177,7 @@ const SearchBar: React.FC = () => {
                           <img src={result.image} alt="Image des résultats" className="w-full sm:w-56 md:w-64 lg:w-44 h-48 object-cover" />
                       <div>
                           <h3 className="text-xl font-bold mb-2">{truncateWords(result.title, 3)}</h3>
-                          <p className=" mb-4">{truncateWords(result.description, 10)}</p>
+                          <p className=" mb-4">{truncateWords(result.description, 20)}</p>
                           
                           <Link to={`/publication-detail/${result.slug}`}>
                             <button className="bg-blue-800 rounded-full px-2 py-1 text-white">Lire la publication </button>
