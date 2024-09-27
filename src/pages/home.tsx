@@ -15,9 +15,16 @@ export default function Home() {
       <SearchBar></SearchBar>
       <About></About>
       <Cards></Cards>
-      <div className="bg-blue-800 py-8 px-7 text-white"> <p  className="text-center">Accédez aux publications  juridiques essentiels publiés par nos experts. Cliquez ci-dessous pour en savoir plus.</p> <br />
-      <div className="flex justify-center"><Link to={"/publications"}><button className="bg-white text-blue-800 p-2 rounded-full">Lire les publications</button></Link></div>
-      
+      <div className="bg-blue-800 py-8 px-7 text-white"> 
+        <p  className="text-center">Accédez aux publications  juridiques essentiels publiés par nos experts. Cliquez ci-dessous pour en savoir plus.
+        </p>
+         <br />
+        <div className="flex justify-center">
+          <Link to={"/publications"}>
+            <button className="bg-white text-blue-800 p-2 rounded-full">Lire les publications
+            </button>
+          </Link>
+        </div>
       </div>
       <ContactForm></ContactForm>
       <Footer></Footer>
