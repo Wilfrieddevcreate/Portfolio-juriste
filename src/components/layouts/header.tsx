@@ -7,7 +7,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-blue-50 py-5 mb-5 font-sans fixed top-0 w-full z-50 shadow-md">
+    <header className="bg-blue-50 py-5 mb-5 font-sans fixed top-0 w-full z-50 shadow-md opacity-5">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/">

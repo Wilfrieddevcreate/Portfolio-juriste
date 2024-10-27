@@ -1,17 +1,17 @@
 // import React from 'react'
 import Header from "../components/layouts/header";
-import HeroSection from "../components/heroSection";
-import About from "../components/about";
-import SearchBar from "../components/searchbar";
-import Cards from "../components/articles";
-import ContactForm from "../components/contact";
-import Footer from "../components/layouts/footer";
-import { Link } from "react-router-dom";
+// import HeroSection from "../components/heroSection";
+// import About from "../components/about";
+// import SearchBar from "../components/searchbar";
+// import Cards from "../components/articles";
+// import ContactForm from "../components/contact";
+// import Footer from "../components/layouts/footer";
+// import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <>
       <Header></Header>
-      <HeroSection></HeroSection>
+      {/* <HeroSection></HeroSection>
       <SearchBar></SearchBar>
       <About></About>
       <Cards></Cards>
@@ -26,8 +26,8 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <ContactForm></ContactForm>
-      <Footer></Footer>
+      <ContactForm></ContactForm> */}
+      {/* <Footer></Footer> */}
     </>
   );
 }
