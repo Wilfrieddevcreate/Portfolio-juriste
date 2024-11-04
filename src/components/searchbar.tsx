@@ -60,7 +60,7 @@ const SearchBar: React.FC = () => {
       <div className="fade-in px-2">
         <div className="">
           <div className="mb-6">
-            <h1 className="font-bold text-2xl mb-4">RECHERCHER UN DOCUMENT</h1>
+            <h1 className="font-bold text-2xl mb-4 ml-12">RECHERCHER UN DOCUMENT</h1>
           </div>
           <form
             className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4 mx-12"
